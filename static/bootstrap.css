@@ -3281,6 +3281,30 @@ fieldset:disabled .btn {
   border-color: #17a2b8;
 }
 
+.btn-ukraine {
+  color: #005bbb;
+  background-color: #ffd500;
+  border-color: #ffd500;
+}
+
+.btn-ukraine:hover {
+  color: #ffd500;
+  background-color: #005bbb;
+  border-color: #005bbb;
+}
+
+.btn-ukraine-2 {
+  color: #ffd500;
+  background-color: #005bbb;
+  border-color: #005bbb;
+}
+
+.btn-ukraine-2:hover {
+  color: #005bbb;
+  background-color: #ffd500;
+  border-color: #ffd500;
+}
+
 .btn-warning {
   color: #fff;
   background-color: #f0ad4e;

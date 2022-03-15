@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+We stand with Ukraine
+{% endblock %}
+{% block body %}
+
+
+<div class="container">
+  <div class="row align-items-center">
+      <div class="col-md-12">
+      <p class="display-4 mt-4">help Ukraine</p>
+      <p class="lead">Języki polski i ukraiński są bardzo podobne i zazwyczaj można się dogadać. Ale warto wiedzieć, że są też <a href="https://cdv.pl/blog/rozwoj-osobisty/o-polsko-ukrainskich-relacjach-homonimicznych-slow-kilka/" target="_blank">drobne pułapki</a>.<br />Czy wiesz, że {{pl_word}} to nie to samo co {{ua_word}}?
+      </p>
+      <p class="lead">
+      Dla osoby z Ukrainy to słowo znaczy "{{ua_mean}}", a dla kogoś z Polski: {{pl_mean}}</p>
+      <p>
+      <div class="mx-auto" style="width: 200px;">
+      <a class="btn btn-ukraine" href="https://helpukrainewin.org"></i> Help</a>
+      <a class="btn btn-ukraine-2" href="https://zajecia-programowania-xd.pl/"> Learn Python</a></p>
+      </div>
+      <p>
+      {{to_page}}
+      </p>
+    </div>
+  </div>
+</div>
+    
+<!-- Badge -->
+<script src="https://cdn.jsdelivr.net/gh/virae/we-stand-with-ukraine@v1.0.2/badge.js" title="Help Ukraine Win" url="https://standforukraine.com" position="left" async></script>
+
+{% endblock %}
