@@ -1,0 +1,5 @@
+**__pycache__/
+flagaenv/
+.vscode/settings.json
+*.sock
+.DS_Store
