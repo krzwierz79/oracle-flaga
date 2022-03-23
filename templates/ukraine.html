@@ -20,12 +20,27 @@ We stand with Ukraine
       <a class="btn btn-ukraine-2" href="https://zajecia-programowania-xd.pl/"> Learn Python</a></p>
       </div>
       <p>
-      {{to_page}}
+      <!-- {{to_page}} -->
+    <div class="lead mt-4">Learn about heroes of Ukraine:</div>
+    <div class="row">
+    {% for p, o, url, d in ua_heroes %}
+  
+    <div class="col-sm">
+      <div class="card border-primary mb-3" style="max-width: 20rem;">
+        <div class="card-header">{{d}} words are <a href="{{url}}">not enough</a></div>
+        <div class="card-body">
+          <h4 class="card-title">{{p}}</h4>
+          <p class="card-text">{{o}}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
       </p>
     </div>
   </div>
 </div>
-    
+<p class="display-4 mt-12">&nbsp;</p>   
 <!-- Badge -->
 <script src="https://cdn.jsdelivr.net/gh/virae/we-stand-with-ukraine@v1.0.2/badge.js" title="Help Ukraine Win" url="https://standforukraine.com" position="left" async></script>
 
