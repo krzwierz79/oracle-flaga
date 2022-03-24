@@ -7,3 +7,4 @@ local_only/
 .vscode/settings.json
 *.sock
 .DS_Store
+pomocnicze_skrypty/xd.py
