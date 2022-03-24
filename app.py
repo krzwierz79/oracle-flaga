@@ -3,7 +3,7 @@ import random
 from programs.wiki_search import wiki_search
 from programs.wiki_hero_search import heroes_sorted
 from programs.ffriends import read_ffriend
-from programs.gaps import build_exercise
+from programs.guten_gaps import build_exercise
 
 
 app = Flask(__name__)

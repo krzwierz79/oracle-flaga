@@ -1,0 +1,48 @@
+['The Yellow Wallpaper\nBy Charlotte Perkins Gilman\n\nIt is very seldom that mere ordinary people like John and myself secure\nancestral halls for the summer.', '\n\nA colonial mansion, a hereditary estate, I would say a haunted house,\nand reach the height of romantic felicity—but that would be asking too\nmuch of fate!', '\n\nStill I will proudly declare that there is something queer about it.', '\n\nElse, why should it be let so cheaply?', '\n And why have stood so long\nuntenanted?', '\n\nJohn laughs at me, of course, but one expects that in marriage.', '\n\nJohn is practical in the extreme.', '\n He has no patience with faith, an\nintense horror of superstition, and he scoffs openly at any talk of\nthings not to be felt and seen and put down in figures.', '\n\nJohn is a physician, and perhaps—(I would not say it to a living soul,\nof course, but this is dead paper and a great relief to my\nmind)—perhaps that is one reason I do not get well faster.', '\n\nYou see, he does not believe I am sick!']
+-----------------------
+The Yellow Wallpaper
+By Charlotte Perkins Gilman
+
+It is very seldom that mere ordinary people like John and myself secure
+ancestral halls for the summer.
+-----------------------
+
+
+A colonial mansion, a hereditary estate, I would say a haunted house,
+and reach the height of romantic felicity—but that would be asking too
+much of fate!
+-----------------------
+
+
+Still I will proudly declare that there is something queer about it.
+-----------------------
+
+
+Else, why should it be let so cheaply?
+-----------------------
+
+ And why have stood so long
+untenanted?
+-----------------------
+
+
+John laughs at me, of course, but one expects that in marriage.
+-----------------------
+
+
+John is practical in the extreme.
+-----------------------
+
+ He has no patience with faith, an
+intense horror of superstition, and he scoffs openly at any talk of
+things not to be felt and seen and put down in figures.
+-----------------------
+
+
+John is a physician, and perhaps—(I would not say it to a living soul,
+of course, but this is dead paper and a great relief to my
+mind)—perhaps that is one reason I do not get well faster.
+-----------------------
+
+
+You see, he does not believe I am sick!

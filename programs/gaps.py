@@ -53,8 +53,7 @@ def build_exercise():
         gapped_passage.append(gapped_sentence)
 
         # print(f"zdanie z luką: {gapped_sentence}")
-    print(
-        f"usunięto {len(removed_words)} słów: {removed_words} z {len(gapped_passage)} zdań.")
+    # print(f"usunięto {len(removed_words)} słów: {removed_words} z {len(gapped_passage)} zdań.")
     # random_words = list(set(removed_words) - set(words_to_check))
     # unchecked_words = list(set(words_to_check) - set(removed_words))
     # print(f"losowe słowa: {random_words}")
