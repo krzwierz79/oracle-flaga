@@ -1,5 +1,9 @@
 **__pycache__/
 flagaenv/
+instrukcje/
+pliki_serwerowe/
+pomocnicze_skrypty/
+local_only/
 .vscode/settings.json
 *.sock
 .DS_Store

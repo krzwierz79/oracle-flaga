@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block title %} koduj.pisz.pl {% endblock %} {% block body %}
+<div class=" h-100 d-flex justify-content-center align-items-center">
+    <div class="card border-dark mt-3" style="max-width: 80vw;">
+        <div class="card-header ">{% for word in box %} {{word}} {% endfor %}</div>
+        <div class="card-body">
+            <h4 class="card-title">fill in the gaps:</h4>
+            <p class="card-text">{% for sentence in passage %} {{sentence}} {% endfor %}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
