@@ -85,7 +85,7 @@ def build_exercise():
     # unchecked_words = list(set(words_to_check) - set(removed_words))
     # print(f"losowe słowa: {random_words}")
     # print(f"niesprawdzone słowa: {unchecked_words}")
-    # return [removed_words, gapped_passage]
+    return [removed_words, gapped_passage]
 
 
 build_exercise()
