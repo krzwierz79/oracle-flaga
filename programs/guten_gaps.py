@@ -73,7 +73,7 @@ def build_exercise():
         # print(f"{count} zdanie: {sentence}")
         removed, replacement = replace_str(
             splitting_sentences(sentence, " "), count + 1)
-        gapped_sentence = f"{sentence.replace(removed, replacement, 1)}"
+        gapped_sentence = f"{sentence.replace(removed, replacement, 1)} "
         removed_words.append(removed)
         random.shuffle(removed_words)
         gapped_passage.append(gapped_sentence)
