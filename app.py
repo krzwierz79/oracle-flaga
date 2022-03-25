@@ -4,7 +4,7 @@ from programs.wiki_search import wiki_search
 from programs.wiki_hero_search import heroes_sorted
 from programs.ffriends import read_ffriend
 from programs.guten_gaps import build_exercise
-
+from programs.wiki_kw_gaps import build_wiki_kw_gaps
 
 app = Flask(__name__)
 
@@ -36,6 +36,14 @@ def ukr():
 def gaps():
     box, passage = build_exercise()
     return render_template("gaps.html",
+                           box=box,
+                           passage=passage)
+
+
+@app.route('/wikigaps')
+def wiki_gaps():
+    box, passage = build_wiki_kw_gaps()
+    return render_template("wikigaps.html",
                            box=box,
                            passage=passage)
 

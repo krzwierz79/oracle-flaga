@@ -45,12 +45,13 @@ def splitting_sentences(sentence, split_by):
 
 
 def replace_str(word_list, sentence_num):
-    chosen_word = ''
+    chosen_word = ""
     for word in word_list:
         # randomize again if shorter than 2 chars or not alphanumeric
         while len(chosen_word) < 2 or any(not char.isalnum() for char in chosen_word):
             chosen_word = word_list[random.randint(0, len(word_list)-1)]
-        # replace random choice with fixed words to check if possible
+        # replace random choice with fixed words_to_check if possible
+        # TODO: pop() already used elements to avoid duplicated removals
         for word in words_to_check:
             if word in word_list:
                 chosen_word = word
@@ -58,11 +59,6 @@ def replace_str(word_list, sentence_num):
     char_count = len(chosen_word)
     replacement = f"({sentence_num}){' _' * char_count}"
     return [chosen_word, replacement]
-
-    # sentence.strip()
-    # sentence = re.sub(r"(\r\n|\n|\r)gm", "", sentence)
-    # print('-----------------------')
-    # print(sentence)
 
 
 def build_exercise():
