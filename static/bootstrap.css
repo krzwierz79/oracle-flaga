@@ -274,11 +274,11 @@ sup {
 
 a {
     color: #4582ec;
-    text-decoration: underline;
 }
 
 a:hover {
     color: #3768bd;
+    text-decoration: underline;
 }
 
 a:not([href]):not([class]),
@@ -4671,8 +4671,8 @@ fieldset:disabled .btn {
 
 .navbar-toggler-icon {
     display: inline-block;
-    width: 1.5em;
-    height: 1.5em;
+    width: 1em;
+    height: 1em;
     vertical-align: middle;
     background-repeat: no-repeat;
     background-position: center;
