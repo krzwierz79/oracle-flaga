@@ -64,14 +64,14 @@ def flaga():
 	ta_flaga = os.path.join(app.config['UPLOAD_FOLDER'], 'flag_image/Flaga__{}.jpg'.format(xd))
 	
 	# Gather heroes.
-	heroes = gather_heroes()
+	heroes = gather_heroes(xd)
 	random.shuffle(heroes)
 
 	return render_template("flaga.html", xd=xd, flaga=ta_flaga, heroes=heroes)
 
-def gather_heroes():
+def gather_heroes(xd):
 	
-	heroes = [
+	patriots = [
  		'Mikołaj Kopernik', 
  		'Rotmistrz Pilecki',
  		'Maria Skłodowska',
@@ -86,8 +86,21 @@ def gather_heroes():
  		# 'Władysław Sikorski',
 		# 'Wojciech Korfanty',
  		# 'Mieczysław Paluch',
-		
 	]
+
+	pirates = [
+ 		'Anne Bonny', 
+ 		'Czarnobrody',
+ 		'Sir Francis Drake',
+ 		'Henry Morgan',
+	]
+
+	if (xd % 2) == 0:
+		heroes = pirates
+		hero_tag = 'pirate'
+	else:
+		heroes = patriots
+		hero_tag = 'patriot'
 
 	greetings = [
 		'pozdrawia',
@@ -123,7 +136,7 @@ def gather_heroes():
 			# 		n_photos += 1
 
 			# Save all.
-			with open('dane/heroes/saved_heroes/'+hero+".hero", "w+") as f:
+			with open('dane/heroes/saved_heroes/'+hero+"."+hero_tag, "w+") as f:
 				f.write(hero + '\n')
 				f.write('\n') #str(n_photos) + '\n')
 				f.write(info_intro + '\n')
@@ -135,18 +148,19 @@ def gather_heroes():
 
 	heroes = []
 	for hero_file in os.listdir('dane/heroes/saved_heroes'):
-		hero = {}
-		some_info = open('dane/heroes/saved_heroes/'+hero_file).readlines()
-		hero['name'] = some_info[0]
-		#photo_nr = random.choice(range(int(some_info[1])))
-		#hero_str = '11'.join(hero['name'][:-1].split())
-		#hero['image'] = '{}_{}.legend'.format(hero_str, photo_nr)
-		hero_quotes = open('dane/heroes/hero_think/' + hero['name'][:-1] + ".hero").readlines()
-		hero['quote'] = random.choice(hero_quotes)
-		hero['description'] = '\n'.join(some_info[2:-1])
-		hero['description'] = bold(hero['description'])
-		hero['url'] = some_info[-1]
-		heroes.append(hero)
+		if hero_file.endswith(hero_tag):
+				hero = {}
+				some_info = open('dane/heroes/saved_heroes/'+hero_file).readlines()
+				hero['name'] = some_info[0]
+				#photo_nr = random.choice(range(int(some_info[1])))
+				#hero_str = '11'.join(hero['name'][:-1].split())
+				#hero['image'] = '{}_{}.legend'.format(hero_str, photo_nr)
+				hero_quotes = open('dane/heroes/hero_think/' + hero['name'][:-1] + ".hero").readlines()
+				hero['quote'] = random.choice(hero_quotes)
+				hero['description'] = '\n'.join(some_info[2:-1])
+				hero['description'] = bold(hero['description'])
+				hero['url'] = some_info[-1]
+				heroes.append(hero)
 
 	return heroes
 
@@ -215,7 +229,6 @@ def hero_think(name):
 
 def create_folders():
 	os.system("mkdir static/hero_image")
-	# os.system("mkdir static/hero_image")
 	os.system("mkdir static/flag_image")
 	os.system("mkdir dane/heroes/saved_heroes")
 	os.system("mkdir dane/heroes/hero_think")
