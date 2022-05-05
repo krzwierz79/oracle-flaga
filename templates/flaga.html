@@ -1,0 +1,74 @@
+{% extends 'base.html' %} 
+
+{% block title %} 
+Bohaterowie 
+{% endblock %} 
+{% block body %}
+
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-md-12">
+
+<div class="flaga my-2" style="text-align:center">
+    <img src="{{ flaga }}" align="middle">
+</div>
+
+<div class="film my-4" style="text-align:center">
+{% if xd == 1 %}
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Q88AkN1hNYM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{% else %}
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/YiFptwV_E2U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{% endif %} 
+</div>
+
+
+<div class="lead mt-4">Poznaj bohaterów:</div>
+<div class="row">
+
+{% for hero in heroes %}
+    
+    <!---
+    <div class="hero_image" style="text-align:center">
+        <img src="/static/hero_image/{{hero.image}}" align="middle"  width="auto" height="150" >
+    </div>
+    -->
+    <div class="col-12">
+        <div class="card border-primary mb-3">
+          <div class="card-header font-italic">
+            <em>"{{hero.quote }}"
+          </em></div>
+          <div class="card-body">
+            <h4 class="card-title">{{hero.name}}</h4>
+            <p class="card-text">{{hero.description | safe }}
+                <br>
+                {{hero.url | safe}}
+            </p>
+          </div>
+        </div>
+      </div>
+<!-- 
+    <div class="hero" style="text-align:center">
+        <h1>{{ hero.name }}</h1>
+    </div>
+
+    <br>
+
+    <div class="hero-quote" style="text-align:center">
+        <p>"{{hero.quote}}"</p>
+    </div>
+
+    <br>
+    
+    <div class="hero-info" style="text-align:center">
+        <p>{{ hero.description | safe }}</p>
+        <p>{{ hero.url | safe }}</p>
+        <br>
+        <br> -->
+    <!-- </div> -->
+
+{% endfor %}
+    </div>
+    </div>
+</div>
+
+{% endblock %}
