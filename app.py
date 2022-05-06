@@ -4,6 +4,7 @@ import os
 import wikipedia
 import requests
 from lxml import html
+# local scripts imports
 from programs.wiki_search import wiki_search
 from programs.wiki_hero_search import heroes_sorted
 from programs.ffriends import read_ffriend
@@ -11,8 +12,9 @@ from programs.guten_gaps import build_exercise
 
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'static'
+app.config['UPLOAD_FOLDER'] = 'static' # not used right now (possibly automate some uploads later)
 
+# main visible routes
 @app.route('/')
 def index():
     text = open('dane/xd.txt').read()
@@ -48,29 +50,33 @@ def gaps():
 def xd():
     return render_template("xd.html")
 
-#029
+# 029 intro to storing data (in plain text) 
 
 @app.route('/flaga', methods=["GET", "POST"])
 def flaga():
+	# Set up folder structure for data
 	create_folders()
 
-	# Flag.
+	# Flag count number of flag images
 	flag_count = len(os.listdir('static/flag_image')) 
+	# pick a random flag
 	# xd = random.choice(range(1, flag_count))
-	xd = random.randint(1, flag_count)
 	# if flag_count < 2:
 	# 	xd = 1
+	xd = random.randint(1, flag_count) # seems simpler than above
+	
+	# hard-code a flag (testing)
 	# ta_flaga = os.path.join(app.config['UPLOAD_FOLDER'], 'flag_image/Flaga__2.jpg')
+	# use a rangom flag
 	ta_flaga = os.path.join(app.config['UPLOAD_FOLDER'], 'flag_image/Flaga__{}.jpg'.format(xd))
 	
-	# Gather heroes.
+	# scrape/store/read heroes data 
 	heroes = gather_heroes(xd)
 	random.shuffle(heroes)
 
 	return render_template("flaga.html", xd=xd, flaga=ta_flaga, heroes=heroes)
 
 def gather_heroes(xd):
-	
 	patriots = [
  		'Mikołaj Kopernik', 
  		'Rotmistrz Pilecki',
@@ -95,13 +101,15 @@ def gather_heroes(xd):
  		'Henry Morgan',
 	]
 
+	# pick side (flag file and heroes)
 	if (xd % 2) == 0:
-		heroes = pirates
+		heroes = pirates # even num in static/flga_image/Flaga__
 		hero_tag = 'pirate'
 	else:
-		heroes = patriots
+		heroes = patriots # odd
 		hero_tag = 'patriot'
 
+	# TODO: not used on the web
 	greetings = [
 		'pozdrawia',
 		'/wave',
@@ -109,6 +117,7 @@ def gather_heroes(xd):
 		'wita',
 	]
 
+	# pull new data from wikipedia
 	wikipedia.set_lang("pl")
 
 	saved_heroes = os.listdir('dane/heroes/saved_heroes')
@@ -122,10 +131,10 @@ def gather_heroes(xd):
 			info_intro = some_info.content.split('\n\n')[0]
 			url = '<a href="'+some_info.url+'">Poszukaj więcej info o: '+hero+"</a>"
 			
-			# Get what hero thinks.
+			# Get what hero thinks. (query wikiquotes)
 			hero_think(hero)
 			
-			# Get & save images.
+			# Get & save images. TODO: not used
 			# images = some_info.images
 			# n_photos = 0
 			# for i, image_url in enumerate(images):
@@ -135,7 +144,7 @@ def gather_heroes(xd):
 			# 		save_image(image_url, image_name)
 			# 		n_photos += 1
 
-			# Save all.
+			# Save all data into file with patriot or pirate ext (side/hero_tag)
 			with open('dane/heroes/saved_heroes/'+hero+"."+hero_tag, "w+") as f:
 				f.write(hero + '\n')
 				f.write('\n') #str(n_photos) + '\n')
@@ -143,12 +152,16 @@ def gather_heroes(xd):
 				f.write(url)
 
 		else:
+			# TODO: not used on the web - display info here already exists? 
 			greeting = random.choice(greetings)
 			print(hero, greeting)
 
 	heroes = []
+	# read all heroes
 	for hero_file in os.listdir('dane/heroes/saved_heroes'):
+		# select files for chosen side
 		if hero_file.endswith(hero_tag):
+				# build dict with data to display
 				hero = {}
 				some_info = open('dane/heroes/saved_heroes/'+hero_file).readlines()
 				hero['name'] = some_info[0]
@@ -172,7 +185,6 @@ def gather_heroes(xd):
 # 	return save_as
 
 def bold(hero_info):
-
 	nice = [
 		'nauk',
 		'gen',
@@ -212,17 +224,19 @@ def hero_think(name):
 	url = 'https://pl.wikiquote.org/wiki/{}'.format(url_name)
 	hero_wikiquotes = requests.get(url)
 	with open('dane/heroes/hero_think/'+name+".hero", "w+") as f:
-		
+		# selects lines to drop or process 
 		for line in hero_wikiquotes.text.split('\n'):
 			if line.startswith('<h2>O'):
 				continue
 			if line.startswith('<ul><li>'):
-				
+				# save clean text strings
 				tree = html.fromstring(line)
 				quote = tree.text_content().strip()
 				if quote.startswith('Utworzyć'):
 					f.write('Nie chce mi się z tobą gadać...\n')
-					# f.write(name + ': nie chce mi się z tobą gadać...\n')
+					# or format with name
+					# f.write(name + ' nie chce z tobą gadać...\n')
+				# more strings to drop
 				elif not quote.startswith('Opis') and not quote.startswith('Autor') and not quote.startswith('Źródło'): 
 					f.write(quote + '\n')
 					print('-', quote)
