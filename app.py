@@ -76,7 +76,7 @@ def xd():
 @app.route("/flaga", methods=["GET", "POST"])
 def flaga():
     """Uses internal list/s of names, stores wiki-search on them, returns stored data"""
-    create_folders()  # Set up folder structure for data
+    # create_folders()  # Set up folder structure for data
 
     # Flag count number of flag images
     flag_count = len(os.listdir("static/flag_image"))
@@ -94,7 +94,7 @@ def flaga():
     )
 
     # scrape/store/read heroes data
-    heroes = gather_heroes(xd)
+    heroes = gather_heroes(xd)  # (xd) for random 1-patriots 2-pirates
     random.shuffle(heroes)
 
     return render_template("flaga.html", xd=xd, flaga=ta_flaga, heroes=heroes)
@@ -154,18 +154,20 @@ def gather_heroes(xd):
             some_info = wikipedia.page(hero)
             info_intro = some_info.content.split("\n\n")[0]
             url = f"<a href={some_info.url}>Czytaj dalej na wikipedii</a>"
+            images = some_info.images
             # Get what hero thinks. (query wikiquotes)
             hero_think(hero)
 
             # Get & save images. TODO: not used
-            # images = some_info.images
+            images = some_info.images
             # n_photos = 0
             # for i, image_url in enumerate(images):
-            # 	if i < 3:
-            # 		hero_str = '11'.join(hero.split())
-            # 		image_name = '{}_{}.legend'.format(hero_str, i)
-            # 		save_image(image_url, image_name)
-            # 		n_photos += 1
+            #     if i < 3:
+            #         print(image_url)
+            #         hero_str = "_".join(hero.split())
+            #         image_name = "{}_{}.jpg".format(hero_str, i)
+            #         save_image(image_url, image_name)
+            #         # n_photos += 1
 
             # Save all data into file with patriot or pirate ext (side/hero_tag)
             with open(
@@ -177,11 +179,15 @@ def gather_heroes(xd):
                 f.write("\n")  # str(n_photos) + '\n')
                 f.write(info_intro + "\n")
                 f.write(url)
+                for img_url in images:
+                    if img_url[len(img_url) - 3 :] == "jpg":
+                        f.write("\n" + img_url)
+                        break
 
-        else:
-            # TODO: not used on the web - display info here already exists?
-            greeting = random.choice(greetings)
-            print(hero, greeting)
+        # else:
+        #     # TODO: not used on the web - display info here already exists?
+        #     greeting = random.choice(greetings)
+        #     print(hero, greeting)
 
         heroes = []
         # read all heroes
@@ -195,28 +201,29 @@ def gather_heroes(xd):
                 ) as f:
                     some_info = f.readlines()
                     hero["name"] = some_info[0]
-                # photo_nr = random.choice(range(int(some_info[1])))
-                # hero_str = '11'.join(hero['name'][:-1].split())
-                # hero['image'] = '{}_{}.legend'.format(hero_str, photo_nr)
+                # photo_nr = 1  # random.choice(range(int(some_info[1])))
+                # hero_str = "_".join(hero["name"][:-1].split())
                 hero_file = hero["name"][:-1]
                 with open(
                     f"dane/heroes/hero_think/{hero_file}.quote", encoding="utf-8"
                 ) as f:
                     hero_quotes = f.readlines()
                     hero["quote"] = random.choice(hero_quotes)
-                    hero["description"] = "\n".join(some_info[2:-1])
+                    hero["description"] = "\n".join(some_info[2:-2])
                     hero["description"] = bold(hero["description"])
-                    hero["url"] = some_info[-1]
+                    hero["url"] = some_info[-2]
+                    hero["image"] = some_info[-1]
                     heroes.append(hero)
     return heroes
 
 
-# def save_image(image_url, image_name):
-# 	image = requests.get(image_url).content
-# 	save_as = 'static/hero_image/{}'.format(image_name)
-# 	with open(save_as, 'wb', encoding="utf-8") as ap:
-# 		ap.write(image)
-# 	return save_as
+# save images to files
+def save_image(image_url, image_name):
+    image = requests.get(image_url).content
+    save_as = "static/hero_image/{}".format(image_name)
+    with open(save_as, "wb") as ap:
+        ap.write(image)
+    return save_as
 
 
 def bold(hero_info):
@@ -282,11 +289,11 @@ def hero_think(name):
                     print("-", quote)
 
 
-def create_folders():
-    os.system("mkdir static/hero_image")
-    os.system("mkdir static/flag_image")
-    os.system("mkdir dane/heroes/saved_heroes")
-    os.system("mkdir dane/heroes/hero_think")
+# def create_folders():
+#     os.system("mkdir static/hero_image")
+#     os.system("mkdir static/flag_image")
+#     os.system("mkdir dane/heroes/saved_heroes")
+#     os.system("mkdir dane/heroes/hero_think")
 
 
 # end 029
