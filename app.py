@@ -64,6 +64,11 @@ def xd():
     """Basic template render"""
     return render_template("xd.html")
 
+@app.route('/pyscript')
+def pyscript():
+    """Pyscript template render"""
+    return render_template("pyscript.html")
+
 # 029 intro to storing data (in plain text) 
 
 @app.route('/flaga', methods=["GET", "POST"])
@@ -103,7 +108,7 @@ def gather_heroes(xd):
  		#'Adam Mickiewicz',
  		
 		#'Jan Henryk Dąbrowski',
- 		# 'Józef Haller',
+ 		'Józef Haller',
  		# 'Władysław Sikorski',
 		# 'Wojciech Korfanty',
  		# 'Mieczysław Paluch',
@@ -114,6 +119,7 @@ def gather_heroes(xd):
  		'Czarnobrody',
  		'Sir Francis Drake',
  		'Henry Morgan',
+		"Mary Read",
 	]
 
     # pick side (flag file and heroes)
@@ -144,7 +150,7 @@ def gather_heroes(xd):
         # Get some info and link.
             some_info = wikipedia.page(hero)
             info_intro = some_info.content.split('\n\n')[0]
-            url = '<a href="'+some_info.url+'">Poszukaj więcej info o: '+hero+"</a>"
+            url = f"<a href={some_info.url}>Czytaj dalej na wikipedii</a>"
 						# Get what hero thinks. (query wikiquotes)
             hero_think(hero)
 			
@@ -255,7 +261,7 @@ def hero_think(name):
 					# or format with name
 					# f.write(name + ' nie chce z tobą gadać...\n')
 				# more strings to drop
-				elif not quote.startswith('Opis') and not quote.startswith('Autor') and not quote.startswith('Źródło'): 
+				elif not quote.startswith(('Opis', 'Autor', 'Żródło', 'Zobacz też')):
 					f.write(quote + '\n')
 					print('-', quote)
 
