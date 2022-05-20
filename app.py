@@ -75,7 +75,7 @@ def pyscript():
 def flaga():
     """Uses internal list/s of names, stores wiki-search on them, returns stored data"""
     page = request.args.get("page", default="random", type=str)
-    create_folders() # Set up folder structure for data
+    # create_folders() # Set up folder structure for data
 
       # Flag count number of flag images
     flag_count = len(os.listdir('static/flag_image')) 
@@ -286,15 +286,15 @@ def hero_think(name):
                     # or format with name
                     # f.write(name + ' nie chce z tobą gadać...\n')
                 # more strings to drop
-                elif not quote.startswith(('Opis', 'Autor', 'Żródło', 'Zobacz też')):
+                elif not quote.startswith(('Opis', 'Autor', 'Źródło', 'Zobacz też')):
                     f.write(quote + '\n')
                     print('-', quote)
 
-def create_folders():
-    os.system("mkdir static/hero_image")
-    os.system("mkdir static/flag_image")
-    os.system("mkdir dane/heroes/saved_heroes")
-    os.system("mkdir dane/heroes/hero_think")
+# def create_folders():
+#     os.system("mkdir static/hero_image")
+#     os.system("mkdir static/flag_image")
+#     os.system("mkdir dane/heroes/saved_heroes")
+#     os.system("mkdir dane/heroes/hero_think")
 
 # end 029
 
