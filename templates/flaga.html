@@ -9,8 +9,8 @@ Bohaterowie
     <div class="row align-items-center">
         <div class="col-md-12">
 
-            <div class="flaga my-2" style="text-align:center">
-                <img src="{{ flaga }}" align="middle">
+            <div class="flaga my-2 grow" style="text-align: center">
+                <a href="{{ url_for('flaga', page=change_to) }}"><img src=" {{ flaga }} " align="middle " /></a>
             </div>
 
             <div class="film my-4" style="text-align:center">
@@ -28,7 +28,7 @@ Bohaterowie
             </div>
 
 
-            <div class="lead mt-4">Poznaj bohaterów:</div>
+            <div class="lead mt-4">Poznaj moich {{ meet }}:</div>
             <div class="row">
 
                 {% for hero in heroes %}

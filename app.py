@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, request, url_for
 import random
 import os
 import wikipedia
@@ -74,6 +74,7 @@ def pyscript():
 @app.route('/flaga', methods=["GET", "POST"])
 def flaga():
     """Uses internal list/s of names, stores wiki-search on them, returns stored data"""
+    page = request.args.get("page", default="random", type=str)
     create_folders() # Set up folder structure for data
 
       # Flag count number of flag images
@@ -82,8 +83,20 @@ def flaga():
       # xd = random.choice(range(1, flag_count))
       # if flag_count < 2:
       #     xd = 1
-    xd = random.randint(1, flag_count) # seems simpler than above
+    if page == "patriots":
+        xd = 1
+    elif page == "pirates":
+        xd = 2
+    else:
+        xd = random.randint(1, flag_count) # seems simpler than above
     
+    if xd == 1:
+        change_to = "pirates"
+        meet = "patriotów"
+    else:
+        change_to = "patriots"
+        meet = "piratów"
+
       # hard-code a flag (testing)
       # ta_flaga = os.path.join(app.config['UPLOAD_FOLDER'], 'flag_image/Flaga__2.jpg')
       # use a rangom flag
@@ -93,7 +106,13 @@ def flaga():
     heroes = gather_heroes(xd)
     random.shuffle(heroes)
 
-    return render_template("flaga.html", xd=xd, flaga=ta_flaga, heroes=heroes)
+    return render_template("flaga.html", 
+        xd=xd, 
+        flaga=ta_flaga, 
+        heroes=heroes, 
+        page=page,
+        change_to=change_to,
+        meet=meet)
 
 def gather_heroes(xd):
 

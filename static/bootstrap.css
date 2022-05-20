@@ -11893,3 +11893,17 @@ table,
 .list-group {
     font-size: 0.9625rem;
 }
+/*!
+ custom
+*/
+
+.grow img {
+    transition: 1s ease;
+}
+
+.grow img:hover {
+    -webkit-transform: scale(0.95);
+    -ms-transform: scale(0.95);
+    transform: scale(0.95);
+    transition: 1s ease;
+}
