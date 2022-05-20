@@ -1,52 +1,66 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
-{% block title %} 
-Bohaterowie 
-{% endblock %} 
+{% block title %}
+Bohaterowie
+{% endblock %}
 {% block body %}
 
 <div class="container">
     <div class="row align-items-center">
         <div class="col-md-12">
 
-<div class="flaga my-2" style="text-align:center">
-    <img src="{{ flaga }}" align="middle">
-</div>
+            <div class="flaga my-2" style="text-align:center">
+                <img src="{{ flaga }}" align="middle">
+            </div>
 
-<div class="film my-4" style="text-align:center">
-{% if xd == 1 %}
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/Q88AkN1hNYM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-{% else %}
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/YiFptwV_E2U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-{% endif %} 
-</div>
+            <div class="film my-4" style="text-align:center">
+                {% if xd == 1 %}
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/Q88AkN1hNYM"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                {% else %}
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/YiFptwV_E2U"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                {% endif %}
+            </div>
 
 
-<div class="lead mt-4">Poznaj bohaterów:</div>
-<div class="row">
+            <div class="lead mt-4">Poznaj bohaterów:</div>
+            <div class="row">
 
-{% for hero in heroes %}
-    
-    <!---
+                {% for hero in heroes %}
+
+                <!---
     <div class="hero_image" style="text-align:center">
         <img src="/static/hero_image/{{hero.image}}" align="middle"  width="auto" height="150" >
     </div>
     -->
-    <div class="col-12">
-        <div class="card border-primary mb-3">
-          <div class="card-header font-italic">
-            <em>"{{hero.quote }}"
-          </em></div>
-          <div class="card-body">
-            <h2 class="card-title"><img class="card-img-top" style="width: 100px" src="{{ hero.image }}" />{{hero.name}}</h2>
-            <p class="card-text">{{hero.description | safe }}
-                <br>
-                {{hero.url | safe}}
-            </p>
-          </div>
-        </div>
-      </div>
-<!-- 
+                <div class="col-12">
+                    <div class="card border-primary mb-3">
+                        <div class="card-header font-italic">
+                            <em>"{{hero.quote }}"
+                            </em>
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-title">
+                                {{hero.name}}</h2>
+                            <div class="image-wrapper float-start pt-2 pe-2">
+                                <img class="card-img-top" style="width: 100px" src="{{ hero.image }}" />
+                            </div>
+                            <div class="card-text">
+
+                                {{hero.description | safe }}
+                                <br>
+                                {{hero.url | safe}}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 
     <div class="hero" style="text-align:center">
         <h1>{{ hero.name }}</h1>
     </div>
@@ -64,11 +78,11 @@ Bohaterowie
         <p>{{ hero.url | safe }}</p>
         <br>
         <br> -->
-    <!-- </div> -->
+                <!-- </div> -->
 
-{% endfor %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
-    </div>
-</div>
 
-{% endblock %}
+    {% endblock %}
