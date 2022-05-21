@@ -117,20 +117,20 @@ def flaga():
 def gather_heroes(xd):
 
     patriots = [
-         'Mikołaj Kopernik', 
-         'Rotmistrz Pilecki',
-         'Maria Skłodowska',
-         'Fryderyk Chopin',
+        'Mikołaj Kopernik', 
+        'Maria Skłodowska',
+        'Fryderyk Chopin',
+        'Adam Mickiewicz',
+        'Julia Pępiak',
         
-         #'Józef Piłsudski'
-         #'Tadeusz Kościuszko',
-         #'Adam Mickiewicz',
-         
-        #'Jan Henryk Dąbrowski',
-         'Józef Haller',
-         # 'Władysław Sikorski',
+        # 'Rotmistrz Pilecki',
+        # 'Józef Piłsudski'
+        # 'Tadeusz Kościuszko',
+        # 'Jan Henryk Dąbrowski',
+        # 'Józef Haller',
+        # 'Władysław Sikorski',
         # 'Wojciech Korfanty',
-         # 'Mieczysław Paluch',
+        # 'Mieczysław Paluch',
     ]
 
     pirates = [
